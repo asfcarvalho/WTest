@@ -8,7 +8,7 @@
 import UIKit
 import CodableCSV
 
-class ZipCodeManager {
+public class ZipCodeManager {
     
     static let shared = ZipCodeManager()
     
@@ -28,8 +28,9 @@ class ZipCodeManager {
      Download all zip code from https://github.com/centraldedados/codigos_postais/raw/master/data/codigos_postais.csv
      save in loca database
      */
-    func downloadZipCode(complete: @escaping (Bool) -> Void) {
+    func downloadZipCode(complete: @escaping ([ZipCodeModel]) -> Void) {
         guard let url = URL(string: "https://github.com/centraldedados/codigos_postais/raw/master/data/codigos_postais.csv") else {
+            complete([])
             return
         }
         
@@ -37,6 +38,7 @@ class ZipCodeManager {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
+                complete([])
                 return
             }
 
@@ -47,7 +49,7 @@ class ZipCodeManager {
                 }
             })
             
-            self.saveZipCode(zipCodeList: zipCodeList, complete: complete)
+            complete(zipCodeList)
         }.resume()
     }
     
@@ -60,7 +62,7 @@ class ZipCodeManager {
     }
     
     /// saving the zipcodes in local data base
-    private func saveZipCode(zipCodeList: [ZipCodeModel], complete: @escaping (Bool) -> Void) {
+    func saveZipCode(zipCodeList: [ZipCodeModel], complete: @escaping (Bool) -> Void) {
         
         if dataBase?.getObjects(ZipCodeModel.self) != nil {
             dataBase?.delete(ZipCodeModel.self)

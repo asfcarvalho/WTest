@@ -9,25 +9,37 @@ import XCTest
 @testable import WTest
 
 class WTestTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    override func setUp() {
+        super.setUp()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testZipCodeDownload() {
+        let expectation = self.expectation(description: "Downloading")
+        ZipCodeManager.shared.downloadZipCode { zipCodeList in
+            XCTAssertTrue(zipCodeList.count > 0)
+            expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 15, handler: nil)
     }
-
+    
+    func testZipCodeSavedLocal() {
+        let zipCode = ZipCodeModel()
+        zipCode.extCodPostal = "123"
+        zipCode.numCodPostal = "12345"
+        let zipCodeListMock = [zipCode]
+        let expectation = self.expectation(description: "Saving")
+        
+        ZipCodeManager.shared.saveZipCode(zipCodeList: zipCodeListMock) { status in
+            XCTAssertTrue(status)
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
 }

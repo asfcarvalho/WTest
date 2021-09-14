@@ -15,13 +15,14 @@ class ViewController: UIViewController {
         
         if UserDefault.isFirstLaunch {
             Loading.shared.showLoading(view)
-            ZipCodeManager.shared.downloadZipCode(complete: { status in
-                UserDefault.isFirstLaunch = !status
-                Loading.shared.stopLoading()
+            ZipCodeManager.shared.downloadZipCode(complete: { zipCodeList in
+                ZipCodeManager.shared.saveZipCode(zipCodeList: zipCodeList) { status in
+                    UserDefault.isFirstLaunch = !status
+                    Loading.shared.stopLoading()
+                }                
             })
         } else {
-            let zipCodeList = ZipCodeManager.shared.loadLocalZipCode()
-            print(zipCodeList)
+            let _ = ZipCodeManager.shared.loadLocalZipCode()
         }
     }
 }
