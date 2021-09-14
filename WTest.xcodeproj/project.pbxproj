@@ -11,7 +11,6 @@
 		19F6DF7926EFBEA700F9EA37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DF7826EFBEA700F9EA37 /* SceneDelegate.swift */; };
 		19F6DF7B26EFBEA700F9EA37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DF7A26EFBEA700F9EA37 /* ViewController.swift */; };
 		19F6DF7E26EFBEA700F9EA37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19F6DF7C26EFBEA700F9EA37 /* Main.storyboard */; };
-		19F6DF8126EFBEA700F9EA37 /* WTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DF7F26EFBEA700F9EA37 /* WTest.xcdatamodeld */; };
 		19F6DF8326EFBEA900F9EA37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19F6DF8226EFBEA900F9EA37 /* Assets.xcassets */; };
 		19F6DF8626EFBEA900F9EA37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19F6DF8426EFBEA900F9EA37 /* LaunchScreen.storyboard */; };
 		19F6DF9126EFBEA900F9EA37 /* WTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DF9026EFBEA900F9EA37 /* WTestTests.swift */; };
@@ -21,9 +20,12 @@
 		19F6DFB426EFD03100F9EA37 /* APICalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DFB326EFD03100F9EA37 /* APICalling.swift */; };
 		19F6DFB626EFD05F00F9EA37 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DFB526EFD05F00F9EA37 /* APIRequest.swift */; };
 		19F6DFB926EFD59400F9EA37 /* CodableCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 19F6DFB826EFD59400F9EA37 /* CodableCSV */; };
-		19F6DFBB26EFE1A500F9EA37 /* BaseCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DFBA26EFE1A500F9EA37 /* BaseCoreData.swift */; };
 		19F6DFBE26EFE9DF00F9EA37 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DFBD26EFE9DF00F9EA37 /* Constants.swift */; };
 		19F6DFC026EFEA9000F9EA37 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6DFBF26EFEA9000F9EA37 /* UserDefault.swift */; };
+		19FF59F526F0BDFE0066D787 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 19FF59F426F0BDFE0066D787 /* RealmSwift */; };
+		19FF59F726F0C41C0066D787 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF59F626F0C41C0066D787 /* DataBaseManager.swift */; };
+		19FF59FA26F0C5060066D787 /* ZipCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF59F926F0C5060066D787 /* ZipCodeModel.swift */; };
+		19FF59FC26F0CC780066D787 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF59FB26F0CC780066D787 /* Loading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +51,6 @@
 		19F6DF7826EFBEA700F9EA37 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		19F6DF7A26EFBEA700F9EA37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		19F6DF7D26EFBEA700F9EA37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		19F6DF8026EFBEA700F9EA37 /* WTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WTest.xcdatamodel; sourceTree = "<group>"; };
 		19F6DF8226EFBEA900F9EA37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19F6DF8526EFBEA900F9EA37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19F6DF8726EFBEA900F9EA37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,9 +64,11 @@
 		19F6DFB026EFCF1200F9EA37 /* ZipCodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeManager.swift; sourceTree = "<group>"; };
 		19F6DFB326EFD03100F9EA37 /* APICalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalling.swift; sourceTree = "<group>"; };
 		19F6DFB526EFD05F00F9EA37 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
-		19F6DFBA26EFE1A500F9EA37 /* BaseCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreData.swift; sourceTree = "<group>"; };
 		19F6DFBD26EFE9DF00F9EA37 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = WTest/Networks/Constants.swift; sourceTree = SOURCE_ROOT; };
 		19F6DFBF26EFEA9000F9EA37 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefault.swift; path = WTest/Networks/UserDefault.swift; sourceTree = SOURCE_ROOT; };
+		19FF59F626F0C41C0066D787 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		19FF59F926F0C5060066D787 /* ZipCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeModel.swift; sourceTree = "<group>"; };
+		19FF59FB26F0CC780066D787 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19FF59F526F0BDFE0066D787 /* RealmSwift in Frameworks */,
 				19F6DFB926EFD59400F9EA37 /* CodableCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,9 +121,10 @@
 		19F6DF7526EFBEA700F9EA37 /* WTest */ = {
 			isa = PBXGroup;
 			children = (
+				19FF59F826F0C4F90066D787 /* Models */,
 				19F6DFBC26EFE9CC00F9EA37 /* Commons */,
 				19F6DFB226EFD01700F9EA37 /* Networks */,
-				19F6DFAC26EFBF3200F9EA37 /* ZipCodeList */,
+				19F6DFAC26EFBF3200F9EA37 /* Managers */,
 				19F6DFA926EFBEF400F9EA37 /* Extensions */,
 				19F6DF7626EFBEA700F9EA37 /* AppDelegate.swift */,
 				19F6DF7826EFBEA700F9EA37 /* SceneDelegate.swift */,
@@ -128,7 +133,6 @@
 				19F6DF8226EFBEA900F9EA37 /* Assets.xcassets */,
 				19F6DF8426EFBEA900F9EA37 /* LaunchScreen.storyboard */,
 				19F6DF8726EFBEA900F9EA37 /* Info.plist */,
-				19F6DF7F26EFBEA700F9EA37 /* WTest.xcdatamodeld */,
 			);
 			path = WTest;
 			sourceTree = "<group>";
@@ -159,12 +163,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		19F6DFAC26EFBF3200F9EA37 /* ZipCodeList */ = {
+		19F6DFAC26EFBF3200F9EA37 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				19F6DFB026EFCF1200F9EA37 /* ZipCodeManager.swift */,
 			);
-			path = ZipCodeList;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		19F6DFB226EFD01700F9EA37 /* Networks */ = {
@@ -172,7 +176,7 @@
 			children = (
 				19F6DFB326EFD03100F9EA37 /* APICalling.swift */,
 				19F6DFB526EFD05F00F9EA37 /* APIRequest.swift */,
-				19F6DFBA26EFE1A500F9EA37 /* BaseCoreData.swift */,
+				19FF59F626F0C41C0066D787 /* DataBaseManager.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -182,8 +186,17 @@
 			children = (
 				19F6DFBD26EFE9DF00F9EA37 /* Constants.swift */,
 				19F6DFBF26EFEA9000F9EA37 /* UserDefault.swift */,
+				19FF59FB26F0CC780066D787 /* Loading.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		19FF59F826F0C4F90066D787 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				19FF59F926F0C5060066D787 /* ZipCodeModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +217,7 @@
 			name = WTest;
 			packageProductDependencies = (
 				19F6DFB826EFD59400F9EA37 /* CodableCSV */,
+				19FF59F426F0BDFE0066D787 /* RealmSwift */,
 			);
 			productName = WTest;
 			productReference = 19F6DF7326EFBEA700F9EA37 /* WTest.app */;
@@ -278,6 +292,7 @@
 			mainGroup = 19F6DF6A26EFBEA700F9EA37;
 			packageReferences = (
 				19F6DFB726EFD59400F9EA37 /* XCRemoteSwiftPackageReference "CodableCSV" */,
+				19FF59F326F0BDFE0066D787 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 19F6DF7426EFBEA700F9EA37 /* Products */;
 			projectDirPath = "";
@@ -323,15 +338,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				19F6DF7B26EFBEA700F9EA37 /* ViewController.swift in Sources */,
-				19F6DF8126EFBEA700F9EA37 /* WTest.xcdatamodeld in Sources */,
 				19F6DFB126EFCF1200F9EA37 /* ZipCodeManager.swift in Sources */,
+				19FF59F726F0C41C0066D787 /* DataBaseManager.swift in Sources */,
+				19FF59FA26F0C5060066D787 /* ZipCodeModel.swift in Sources */,
 				19F6DFC026EFEA9000F9EA37 /* UserDefault.swift in Sources */,
-				19F6DFBB26EFE1A500F9EA37 /* BaseCoreData.swift in Sources */,
 				19F6DFAB26EFBF1200F9EA37 /* Constraints.swift in Sources */,
 				19F6DFBE26EFE9DF00F9EA37 /* Constants.swift in Sources */,
 				19F6DFB426EFD03100F9EA37 /* APICalling.swift in Sources */,
 				19F6DF7726EFBEA700F9EA37 /* AppDelegate.swift in Sources */,
 				19F6DFB626EFD05F00F9EA37 /* APIRequest.swift in Sources */,
+				19FF59FC26F0CC780066D787 /* Loading.swift in Sources */,
 				19F6DF7926EFBEA700F9EA37 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +525,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TKVJKXN5X;
 				INFOPLIST_FILE = WTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -528,6 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TKVJKXN5X;
 				INFOPLIST_FILE = WTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -671,6 +689,14 @@
 				minimumVersion = 0.6.7;
 			};
 		};
+		19FF59F326F0BDFE0066D787 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.15.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -679,20 +705,12 @@
 			package = 19F6DFB726EFD59400F9EA37 /* XCRemoteSwiftPackageReference "CodableCSV" */;
 			productName = CodableCSV;
 		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		19F6DF7F26EFBEA700F9EA37 /* WTest.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				19F6DF8026EFBEA700F9EA37 /* WTest.xcdatamodel */,
-			);
-			currentVersion = 19F6DF8026EFBEA700F9EA37 /* WTest.xcdatamodel */;
-			path = WTest.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+		19FF59F426F0BDFE0066D787 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 19FF59F326F0BDFE0066D787 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
-/* End XCVersionGroup section */
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 19F6DF6B26EFBEA700F9EA37 /* Project object */;
 }

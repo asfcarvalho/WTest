@@ -14,8 +14,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         if UserDefault.isFirstLaunch {
+            Loading.shared.showLoading(view)
             ZipCodeManager.shared.downloadZipCode(complete: { status in
                 UserDefault.isFirstLaunch = !status
+                Loading.shared.stopLoading()
             })
         } else {
             let zipCodeList = ZipCodeManager.shared.loadLocalZipCode()

@@ -7,64 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3ECA1D07-4B0D-4048-AB0A-DF80D3C7820B"
+            uuid = "9B29B392-4D3D-45F1-9ADD-314A9F567E72"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WTest/ZipCodeList/ZipCodeManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "loadLocalZipCode()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3ECA1D07-4B0D-4048-AB0A-DF80D3C7820B - 9bd7b8a812c139d1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WTest.ZipCodeManager.loadLocalZipCode() -&gt; Swift.Array&lt;WTest.ZipCodeModel&gt;"
-                  moduleName = "WTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Doc/Projects/Bee-eng/WTest/WTest/ZipCodeList/ZipCodeManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "256">
-               </Location>
-               <Location
-                  uuid = "3ECA1D07-4B0D-4048-AB0A-DF80D3C7820B - a2788f732cab31f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WTest.ZipCode) -&gt; WTest.ZipCodeModel in WTest.ZipCodeManager.loadLocalZipCode() -&gt; Swift.Array&lt;WTest.ZipCodeModel&gt;"
-                  moduleName = "WTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Doc/Projects/Bee-eng/WTest/WTest/ZipCodeList/ZipCodeManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A1D54A1F-890A-4029-8740-296295F42358"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WTest/ZipCodeList/ZipCodeManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "saveZipCode(zipCodeList:complete:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
