@@ -124,9 +124,9 @@ extension ZipCodeViewController: UITableViewDataSource {
 
 extension ZipCodeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            self?.viewModel?.filterZipCode(with: textSearched)
+        viewModel?.filterZipCode(with: textSearched)
+        DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
-        })
+        }
     }
 }

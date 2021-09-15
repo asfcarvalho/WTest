@@ -53,20 +53,12 @@ public class ZipCodeManager {
         }.resume()
     }
     
-    func loadLocalZipCode() -> [ZipCodeModel] {
-        guard let zipCodeList = dataBase?.getObjects(ZipCodeModel.self) as? [ZipCodeModel] else {
-            return []
-        }
-        
-        return zipCodeList
+    func loadLocalZipCode(completed: @escaping ([ZipCodeModel]) -> Void) {
+        dataBase?.getObjects(ZipCodeModel.self, completed: completed)
     }
     
-    func loadLocalZipCodeFiltered(with text: String) -> [ZipCodeModel] {
-        guard let zipCodeList = dataBase?.getObjectsFiltered(ZipCodeModel.self, text: text) else {
-            return []
-        }
-        
-        return zipCodeList
+    func loadLocalZipCodeFiltered(with text: String, completed: @escaping ([ZipCodeModel]) -> Void) {
+        dataBase?.getObjectsFiltered(ZipCodeModel.self, text: text, completed: completed)
     }
     
     /// saving the zipcodes in local data base

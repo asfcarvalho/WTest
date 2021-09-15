@@ -15,8 +15,8 @@ protocol DataBaseManagerInterface {
     func update(_ object: [Object], completion: (() -> Void)?)
     func get(_ objectType: Object.Type, primaryKey: String) -> Object?
     func getObjects(_ objectType: Object.Type) -> [Object]
-//    func getObjectsFiltered(_ objectType: Object.Type, text: String) -> [Object]
-    func getObjectsFiltered<T: Object>(_ objectType: T.Type, text: String) -> [T]
+    func getObjects<T: Object>(_ objectType: T.Type, completed: @escaping ([T]) -> Void)
+    func getObjectsFiltered<T: Object>(_ objectType: T.Type, text: String, completed: @escaping ([T]) -> Void)
     func delete(_ objectType: Object.Type, primaryKey: String)
     func delete(_ objectType: Object.Type)
     func deleteObjects(_ objects: [Object])
@@ -25,6 +25,8 @@ protocol DataBaseManagerInterface {
 class DatabaseManager: DataBaseManagerInterface {
         
     lazy public var realm: Realm = try! realmInstance()
+    
+    private var token: NotificationToken?
     
     func realmInstance() throws -> Realm {
         /// configuration with migration database and shrink database if its reach more than 10MB
@@ -108,14 +110,29 @@ class DatabaseManager: DataBaseManagerInterface {
         realm.objects(objectType).map({ $0 })
     }
     
-    func getObjectsFiltered<T: Object>(_ objectType: T.Type, text: String) -> [T] {
-        let filter: [String] = text.split(separator: " ").map({ String($0) })
-        if filter.count > 0 {
-            let predicates = getPredicates(with: filter)
-            let predicate = NSCompoundPredicate(type: .or, subpredicates: predicates)
-            return realm.objects(objectType.self).filter(predicate).map({ $0 })
+    func getObjects<T: Object>(_ objectType: T.Type, completed: @escaping ([T]) -> Void) {
+        let realmConfig: Realm.Configuration = realm.configuration
+        DispatchQueue(label: "background").async {
+            let realm = try! Realm(configuration: realmConfig)
+            completed(realm.objects(objectType).map({ $0 }))
         }
-        return realm.objects(objectType.self).map({ $0 })
+    }
+    
+    func getObjectsFiltered<T: Object>(_ objectType: T.Type, text: String, completed: @escaping ([T]) -> Void) {
+        let realmConfig: Realm.Configuration = realm.configuration
+        DispatchQueue(label: "background").async {
+            let realm = try! Realm(configuration: realmConfig)
+            
+            let split = text.split(separator: "-").flatMap({ $0.split(separator: " ")})
+            let filter: [String] = split.map({ String($0) })
+            if filter.count > 0 {
+                let predicates = self.getPredicates(with: filter)
+                let predicate = NSCompoundPredicate(type: .or, subpredicates: predicates)
+                completed(realm.objects(objectType.self).filter(predicate).map({ $0 }))
+            } else {
+                completed(realm.objects(objectType.self).map({ $0 }))
+            }
+        }
     }
     
     private func getPredicates(with filter: [String]) -> [NSPredicate] {

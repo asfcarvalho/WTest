@@ -21,31 +21,30 @@ class ZipCodeListViewModel {
             ZipCodeManager.shared.downloadZipCode(complete: { zipCodeList in
                 ZipCodeManager.shared.saveZipCode(zipCodeList: zipCodeList) { status in
                     UserDefault.isFirstLaunch = !status
-                    self.setZipCodeFromLocalData()
-                    completion()
+                    self.setZipCodeFromLocalData(completed: completion)
                 }
             })
         } else {
-            setZipCodeFromLocalData()
-            completion()
+            setZipCodeFromLocalData(completed: completion)
         }
     }
     
-    private func setZipCodeFromLocalData() {
-        let zipCodeLocalList = ZipCodeManager.shared.loadLocalZipCode()
-        
-        zipCodeList = zipCodeLocalList.map({
-            ZipCodeViewModel(zipCode: "\($0.numCodPostal)-\($0.extCodPostal)",
-                             desigPostal: $0.desigPostal)
+    private func setZipCodeFromLocalData(completed: @escaping ()-> Void) {
+        ZipCodeManager.shared.loadLocalZipCode(completed: { response in
+            self.zipCodeList = response.map({
+                ZipCodeViewModel(zipCode: "\($0.numCodPostal)-\($0.extCodPostal)",
+                                 desigPostal: $0.desigPostal)
+            })
+            completed()
         })
     }
     
     func filterZipCode(with text: String) {
-        let zipCodeLocalList = ZipCodeManager.shared.loadLocalZipCodeFiltered(with: text)
-        
-        zipCodeList = zipCodeLocalList.map({
-            ZipCodeViewModel(zipCode: "\($0.numCodPostal)-\($0.extCodPostal)",
-                             desigPostal: $0.desigPostal)
+        ZipCodeManager.shared.loadLocalZipCodeFiltered(with: text, completed: { response in
+            self.zipCodeList = response.map({
+                ZipCodeViewModel(zipCode: "\($0.numCodPostal)-\($0.extCodPostal)",
+                                 desigPostal: $0.desigPostal)
+            })
         })
     }
 }
