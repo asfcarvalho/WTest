@@ -9,4 +9,5 @@ import Foundation
 
 class Constants {
     static let isFirstLaunchKey = "isFirstLaunchKey"
+    static let urlZipCodeList = "https://github.com/centraldedados/codigos_postais/raw/master/data/codigos_postais.csv"
 }

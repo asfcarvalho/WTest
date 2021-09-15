@@ -9,9 +9,6 @@ import UIKit
 
 class ZipCodeViewController: UIViewController {
     
-    private let cellName = "cell"
-    private var isSeraching = false
-    
     var viewModel: ZipCodeListViewModel?
     
     private lazy var tableView: UITableView = {
@@ -33,21 +30,10 @@ class ZipCodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchData()
+                
         configUI()
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(
-            forName: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil, queue: .main) { (notification) in
-            self.handleKeyboard(notification: notification)
-        }
-        notificationCenter.addObserver(
-            forName: UIResponder.keyboardWillHideNotification,
-            object: nil, queue: .main) { (notification) in
-            self.handleKeyboard(notification: notification)
-        }
+        configKeyboardManager()
+        fetchData()
     }
     
     private func handleKeyboard(notification: Notification) {
@@ -69,16 +55,29 @@ class ZipCodeViewController: UIViewController {
       let keyboardHeight = keyboardFrame.cgRectValue.size.height
       UIView.animate(withDuration: 0.1, animations: { () -> Void in
         self.tableView.bottomToSuperview(margin: keyboardHeight)
-        //self.searchFooterBottomConstraint.constant = keyboardHeight
         self.view.layoutIfNeeded()
       })
+    }
+    
+    private func configKeyboardManager() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil, queue: .main) { (notification) in
+            self.handleKeyboard(notification: notification)
+        }
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil, queue: .main) { (notification) in
+            self.handleKeyboard(notification: notification)
+        }
     }
     
     private func configUI() {
         view.backgroundColor = .white
         
         searchBar.delegate = self
-        tableView.register(ZipCodeCell.self, forCellReuseIdentifier: cellName)
+        tableView.register(ZipCodeCell.self, forCellReuseIdentifier: ZipCodeCell.identifier)
         tableView.dataSource = self
         
         view.addSubviews([searchBar, tableView])
@@ -111,7 +110,7 @@ extension ZipCodeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName) as? ZipCodeCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ZipCodeCell.identifier) as? ZipCodeCell else {
             return UITableViewCell()
         }
         cell.awakeFromNib()

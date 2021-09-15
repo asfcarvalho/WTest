@@ -29,7 +29,7 @@ public class ZipCodeManager {
      save in loca database
      */
     func downloadZipCode(complete: @escaping ([ZipCodeModel]) -> Void) {
-        guard let url = URL(string: "https://github.com/centraldedados/codigos_postais/raw/master/data/codigos_postais.csv") else {
+        guard let url = URL(string: Constants.urlZipCodeList) else {
             complete([])
             return
         }

@@ -27,6 +27,15 @@ class ZipCodeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        stackView.arrangedSubviews.forEach({
+            $0.removeFromSuperview()
+        })
+        stackView.removeFromSuperview()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +48,7 @@ class ZipCodeCell: UITableViewCell {
     }
     
     private func configUI() {
-        addSubviews([stackView])
+        contentView.addSubviews([stackView])
         
         stackView
             .edgeToSuperViewVerical(margin: 8)
