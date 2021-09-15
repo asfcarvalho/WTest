@@ -22,7 +22,7 @@ class ArticleListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        viewModel = ArticleListViewModel()
         configUI()
         fetchData()
     }
@@ -30,17 +30,20 @@ class ArticleListViewController: UIViewController {
     private func configUI() {
         view.backgroundColor = .white
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellName)
+        tableView.register(ArticleListCell.self, forCellReuseIdentifier: cellName)
         tableView.dataSource = self
+        tableView.delegate = self
+        tableView.prefetchDataSource = self
         
         view.addSubviews([tableView])
         
         tableView.edgeToSuperView()
     }
     
-    private func fetchData() {
-        viewModel = ArticleListViewModel()
-        Loading.shared.showLoading(view)
+    private func fetchData(animation: Bool = true) {
+        if animation {
+            Loading.shared.showLoading(view)
+        }
         viewModel?.fetchData {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -50,20 +53,27 @@ class ArticleListViewController: UIViewController {
     }
 }
 
-extension ArticleListViewController: UITableViewDataSource {
+extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.articleList.count ?? 0
+        viewModel?.articleList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName) else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName) as? ArticleListCell else {
             return UITableViewCell()
         }
         
-        let article = viewModel?.articleList[indexPath.row]
+        let article = viewModel?.articleList?[indexPath.row]
         
-        cell.textLabel?.text = article?.title
+        cell.awakeFromNib()
+        cell.loadData(with: article)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if viewModel?.shouldCallNextPage(indexPaths) == true {
+            fetchData(animation: false)
+        }
     }
 }

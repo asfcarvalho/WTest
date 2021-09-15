@@ -27,6 +27,12 @@ class ZipCodeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        stackView.removeFromSuperview()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
