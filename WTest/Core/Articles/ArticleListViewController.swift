@@ -9,8 +9,8 @@ import UIKit
 
 class ArticleListViewController: UIViewController {
     
-    private let cellName = "cell"
     private var viewModel: ArticleListViewModel?
+    private var router: ArticleListRouter?
     
     private lazy var tableView: UITableView = {
        let tableView = UITableView()
@@ -23,6 +23,7 @@ class ArticleListViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = ArticleListViewModel()
+        router = ArticleListRouter()
         configUI()
         fetchData()
     }
@@ -30,7 +31,7 @@ class ArticleListViewController: UIViewController {
     private func configUI() {
         view.backgroundColor = .white
         
-        tableView.register(ArticleListCell.self, forCellReuseIdentifier: cellName)
+        tableView.register(ArticleListCell.self, forCellReuseIdentifier: ArticleListCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.prefetchDataSource = self
@@ -51,6 +52,11 @@ class ArticleListViewController: UIViewController {
             Loading.shared.stopLoading()
         }
     }
+    
+    private func openArticle(_ index: Int) {
+        let articleViewModel = ArticleViewModel(viewModel?.articleList?[index])
+        router?.openArticle(from: self, articleViewModel: articleViewModel)
+    }
 }
 
 extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
@@ -59,7 +65,7 @@ extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellName) as? ArticleListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListCell.identifier) as? ArticleListCell else {
             return UITableViewCell()
         }
         
@@ -77,11 +83,8 @@ extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate,
         }
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        50
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        openArticle(indexPath.row)
     }
 }

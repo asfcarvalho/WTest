@@ -48,7 +48,7 @@ class ZipCodeCell: UITableViewCell {
     }
     
     private func configUI() {
-        addSubviews([stackView])
+        contentView.addSubviews([stackView])
         
         stackView
             .edgeToSuperViewVerical(margin: 8)

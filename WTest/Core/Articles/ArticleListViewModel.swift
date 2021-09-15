@@ -5,7 +5,7 @@
 //  Created by Anderson F Carvalho on 15/09/21.
 //
 
-import Foundation
+import UIKit
 
 class ArticleListViewModel {
     
@@ -19,6 +19,9 @@ class ArticleListViewModel {
         let title: String
         let author: String
         let summary: String
+        let body: String?
+        let publishedAt: String?
+        let hero: String?
     }
     
     func fetchData(competion: @escaping () -> Void) {
@@ -38,7 +41,12 @@ class ArticleListViewModel {
         self.totalPage = Int((Double(article.count!) / Double(pageLimit)).rounded(.up))
         
         let articleListTemp = article.items?.map({
-            ArticleViewModel(title: $0.title ?? "", author: $0.author ?? "", summary: $0.summary ?? "")
+            ArticleViewModel(title: $0.title ?? "",
+                             author: $0.author ?? "",
+                             summary: $0.summary ?? "",
+                             body: $0.body,
+                             publishedAt: $0.publishedAt,
+                             hero: $0.hero)
         }) ?? []
         
         if self.articleList == nil {
