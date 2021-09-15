@@ -10,7 +10,6 @@ import UIKit
 class ZipCodeViewController: UIViewController {
     
     private let cellName = "cell"
-    private var isSeraching = false
     
     var viewModel: ZipCodeListViewModel?
     
@@ -33,21 +32,10 @@ class ZipCodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchData()
+                
         configUI()
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(
-            forName: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil, queue: .main) { (notification) in
-            self.handleKeyboard(notification: notification)
-        }
-        notificationCenter.addObserver(
-            forName: UIResponder.keyboardWillHideNotification,
-            object: nil, queue: .main) { (notification) in
-            self.handleKeyboard(notification: notification)
-        }
+        configKeyboardManager()
+        fetchData()
     }
     
     private func handleKeyboard(notification: Notification) {
@@ -72,6 +60,20 @@ class ZipCodeViewController: UIViewController {
         //self.searchFooterBottomConstraint.constant = keyboardHeight
         self.view.layoutIfNeeded()
       })
+    }
+    
+    private func configKeyboardManager() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil, queue: .main) { (notification) in
+            self.handleKeyboard(notification: notification)
+        }
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil, queue: .main) { (notification) in
+            self.handleKeyboard(notification: notification)
+        }
     }
     
     private func configUI() {
