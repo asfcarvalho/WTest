@@ -13,6 +13,7 @@ class ArticleListCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 4
+        stackView.distribution = .fill
         return stackView
     }()
     
@@ -43,6 +44,15 @@ class ArticleListCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        stackView.arrangedSubviews.forEach({
+            $0.removeFromSuperview()
+        })
+        stackView.removeFromSuperview()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -58,15 +68,16 @@ class ArticleListCell: UITableViewCell {
     }
 
     private func configUI() {
-        addSubviews([stackView])
+        contentView.addSubviews([stackView])
         
         setTitleViewInStackView()
         stackView.addArrangedSubview(authorLabel)
-        stackView.addArrangedSubview(summaryLabel)
         
         stackView
             .edgeToSuperViewVerical(margin: 12)
             .edgeToSuperViewHorizontal(margin: 16)
+        
+        stackView.layoutIfNeeded()
     }
     
     private func setTitleViewInStackView() {
@@ -79,6 +90,16 @@ class ArticleListCell: UITableViewCell {
         stackView.addArrangedSubview(bodyTitleView)
         
         setupAnchors()
+    }
+    
+    private func setSummaryInStackView(_ summary: String?) {
+        guard let summary = summary, !summary.isEmpty else {
+            return
+        }
+        
+        summaryLabel.text = summary
+        
+        stackView.addArrangedSubview(summaryLabel)
     }
     
     private func setupAnchors() {
@@ -97,6 +118,6 @@ class ArticleListCell: UITableViewCell {
     func loadData(with article: ArticleListViewModel.ArticleViewModel?) {
         titleLabel.text = article?.title
         authorLabel.text = article?.author
-        summaryLabel.text = article?.summary
+        setSummaryInStackView(article?.summary)
     }
 }

@@ -31,6 +31,9 @@ class ZipCodeCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        stackView.arrangedSubviews.forEach({
+            $0.removeFromSuperview()
+        })
         stackView.removeFromSuperview()
     }
 

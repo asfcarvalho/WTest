@@ -76,4 +76,12 @@ extension ArticleListViewController: UITableViewDataSource, UITableViewDelegate,
             fetchData(animation: false)
         }
     }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
 }
