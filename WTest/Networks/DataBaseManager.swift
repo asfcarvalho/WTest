@@ -15,6 +15,8 @@ protocol DataBaseManagerInterface {
     func update(_ object: [Object], completion: (() -> Void)?)
     func get(_ objectType: Object.Type, primaryKey: String) -> Object?
     func getObjects(_ objectType: Object.Type) -> [Object]
+//    func getObjectsFiltered(_ objectType: Object.Type, text: String) -> [Object]
+    func getObjectsFiltered<T: Object>(_ objectType: T.Type, text: String) -> [T]
     func delete(_ objectType: Object.Type, primaryKey: String)
     func delete(_ objectType: Object.Type)
     func deleteObjects(_ objects: [Object])
@@ -104,6 +106,28 @@ class DatabaseManager: DataBaseManagerInterface {
      */
     func getObjects(_ objectType: Object.Type) -> [Object] {
         realm.objects(objectType).map({ $0 })
+    }
+    
+    func getObjectsFiltered<T: Object>(_ objectType: T.Type, text: String) -> [T] {
+        let filter: [String] = text.split(separator: " ").map({ String($0) })
+        if filter.count > 0 {
+            let predicates = getPredicates(with: filter)
+            let predicate = NSCompoundPredicate(type: .or, subpredicates: predicates)
+            return realm.objects(objectType.self).filter(predicate).map({ $0 })
+        }
+        return realm.objects(objectType.self).map({ $0 })
+    }
+    
+    private func getPredicates(with filter: [String]) -> [NSPredicate] {
+        var predicates: [NSPredicate] = []
+        
+        filter.forEach({
+            predicates.append(NSPredicate(format: "numCodPostal CONTAINS[c] %@", $0))
+            predicates.append(NSPredicate(format: "extCodPostal CONTAINS[c] %@", $0))
+            predicates.append(NSPredicate(format: "desigPostal CONTAINS[c] %@", $0))
+        })
+        
+        return predicates
     }
     
     /**

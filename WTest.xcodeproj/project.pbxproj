@@ -26,6 +26,9 @@
 		19FF59F726F0C41C0066D787 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF59F626F0C41C0066D787 /* DataBaseManager.swift */; };
 		19FF59FA26F0C5060066D787 /* ZipCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF59F926F0C5060066D787 /* ZipCodeModel.swift */; };
 		19FF59FC26F0CC780066D787 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF59FB26F0CC780066D787 /* Loading.swift */; };
+		19FF5A0126F0D9630066D787 /* ZipCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF5A0026F0D9630066D787 /* ZipCodeViewController.swift */; };
+		19FF5A0326F0DB560066D787 /* ZipCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF5A0226F0DB560066D787 /* ZipCodeViewModel.swift */; };
+		19FF5A0726F0EC9A0066D787 /* ZipCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF5A0626F0EC9A0066D787 /* ZipCodeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		19FF59F626F0C41C0066D787 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		19FF59F926F0C5060066D787 /* ZipCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeModel.swift; sourceTree = "<group>"; };
 		19FF59FB26F0CC780066D787 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		19FF5A0026F0D9630066D787 /* ZipCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeViewController.swift; sourceTree = "<group>"; };
+		19FF5A0226F0DB560066D787 /* ZipCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeViewModel.swift; sourceTree = "<group>"; };
+		19FF5A0626F0EC9A0066D787 /* ZipCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,7 @@
 				19F6DFB226EFD01700F9EA37 /* Networks */,
 				19F6DFAC26EFBF3200F9EA37 /* Managers */,
 				19F6DFA926EFBEF400F9EA37 /* Extensions */,
+				19FF59FD26F0D8E50066D787 /* ZipCodeList */,
 				19F6DF7626EFBEA700F9EA37 /* AppDelegate.swift */,
 				19F6DF7826EFBEA700F9EA37 /* SceneDelegate.swift */,
 				19F6DF7A26EFBEA700F9EA37 /* ViewController.swift */,
@@ -197,6 +204,24 @@
 				19FF59F926F0C5060066D787 /* ZipCodeModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		19FF59FD26F0D8E50066D787 /* ZipCodeList */ = {
+			isa = PBXGroup;
+			children = (
+				19FF5A0526F0EAF40066D787 /* Cell */,
+				19FF5A0026F0D9630066D787 /* ZipCodeViewController.swift */,
+				19FF5A0226F0DB560066D787 /* ZipCodeViewModel.swift */,
+			);
+			path = ZipCodeList;
+			sourceTree = "<group>";
+		};
+		19FF5A0526F0EAF40066D787 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				19FF5A0626F0EC9A0066D787 /* ZipCodeCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,10 +370,13 @@
 				19F6DFAB26EFBF1200F9EA37 /* Constraints.swift in Sources */,
 				19F6DFBE26EFE9DF00F9EA37 /* Constants.swift in Sources */,
 				19F6DFB426EFD03100F9EA37 /* APICalling.swift in Sources */,
+				19FF5A0726F0EC9A0066D787 /* ZipCodeCell.swift in Sources */,
 				19F6DF7726EFBEA700F9EA37 /* AppDelegate.swift in Sources */,
 				19F6DFB626EFD05F00F9EA37 /* APIRequest.swift in Sources */,
 				19FF59FC26F0CC780066D787 /* Loading.swift in Sources */,
 				19F6DF7926EFBEA700F9EA37 /* SceneDelegate.swift in Sources */,
+				19FF5A0126F0D9630066D787 /* ZipCodeViewController.swift in Sources */,
+				19FF5A0326F0DB560066D787 /* ZipCodeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

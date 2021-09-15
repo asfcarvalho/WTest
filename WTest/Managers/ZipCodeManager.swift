@@ -61,6 +61,14 @@ public class ZipCodeManager {
         return zipCodeList
     }
     
+    func loadLocalZipCodeFiltered(with text: String) -> [ZipCodeModel] {
+        guard let zipCodeList = dataBase?.getObjectsFiltered(ZipCodeModel.self, text: text) else {
+            return []
+        }
+        
+        return zipCodeList
+    }
+    
     /// saving the zipcodes in local data base
     func saveZipCode(zipCodeList: [ZipCodeModel], complete: @escaping (Bool) -> Void) {
         
@@ -68,6 +76,9 @@ public class ZipCodeManager {
             dataBase?.delete(ZipCodeModel.self)
         }
         
-        dataBase?.create(zipCodeList, completion: complete)
+        // Removing the duplicated data
+        let zipCodeListFiltered = Array(Set(zipCodeList))
+        
+        dataBase?.create(zipCodeListFiltered, completion: complete)
     }
 }

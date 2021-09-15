@@ -106,7 +106,7 @@ public extension UIView {
         }
         autoResizingOff()
         if #available(iOS 11.0, *) {
-            layoutYConstraint(fromElement: topAnchor, toElement: superView.safeAreaLayoutGuide.topAnchor, relation: relation, constant: margin)
+            layoutYConstraint(fromElement: safeAreaLayoutGuide.topAnchor, toElement: superView.safeAreaLayoutGuide.topAnchor, relation: relation, constant: margin)
         } else {
             layoutYConstraint(fromElement: topAnchor, toElement: superView.topAnchor, relation: relation, constant: margin)
         }
@@ -131,7 +131,11 @@ public extension UIView {
             return self
         }
         autoResizingOff()
-        layoutYConstraint(fromElement: bottomAnchor, toElement: superView.bottomAnchor, relation: relation, constant: -margin)
+        if #available(iOS 11.0, *) {
+            layoutYConstraint(fromElement: safeAreaLayoutGuide.bottomAnchor, toElement: superView.safeAreaLayoutGuide.bottomAnchor, relation: relation, constant: -margin)
+        } else {
+            layoutYConstraint(fromElement: bottomAnchor, toElement: superView.bottomAnchor, relation: relation, constant: -margin)
+        }
         return self
     }
 
