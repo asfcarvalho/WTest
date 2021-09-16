@@ -1,7 +1,8 @@
 # WTest
 
-XCode Version: 12.5.1
-Swift Version: 5
+#XCode Version: 12.5.1
+
+#Swift Version: 5
 
 #Swift Package Manager:
 1. CodableCSV: Used to parse CSV file to object
