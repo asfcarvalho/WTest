@@ -47,4 +47,10 @@ class ZipCodeListViewModel {
             })
         })
     }
+    
+    func getZipCodeDescription(from index: Int) -> String {
+        let zipCode = zipCodeList[index]
+        
+        return "\(zipCode.zipCode) \(zipCode.desigPostal)"
+    }
 }

@@ -14,4 +14,11 @@ extension Date {
         
         return dateFormat.string(from: self)
     }
+    
+    func toLongDateString() -> String {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = DateFormat.longString.rawValue
+        
+        return dateFormat.string(from: self)
+    }
 }

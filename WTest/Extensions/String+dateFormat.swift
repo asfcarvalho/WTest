@@ -10,6 +10,7 @@ import Foundation
 enum DateFormat: String {
     case long = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     case short = "dd MMMM yyyy"
+    case longString = "EEEE, dd MMMM yyyy"
 }
 
 extension String {
