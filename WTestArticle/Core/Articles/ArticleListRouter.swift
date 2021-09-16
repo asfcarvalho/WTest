@@ -9,7 +9,8 @@ import UIKit
 
 class ArticleListRouter {
     
-    func openArticle(from viewController: UIViewController, articleViewModel: ArticleViewModel) {
+    func openArticle(from viewController: UIViewController,
+                     articleViewModel: NewArticleViewModel) {
         let articleView = ArticleViewController(viewModel: articleViewModel)
         viewController.navigationController?.pushViewController(articleView, animated: true)
     }

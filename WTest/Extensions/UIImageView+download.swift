@@ -12,6 +12,11 @@ public extension UIImageView {
     
     func loadImageWith(urlPath: String?, placeholderImage: UIImage? = nil,
                        loadCacheEnabled: Bool = false, completion: ((String?) -> Void)? = nil) {
+        
+        if let placeholderImage = placeholderImage {
+            image = placeholderImage
+        }
+        
         guard let urlPath = urlPath else {
             completion?(nil)
             return

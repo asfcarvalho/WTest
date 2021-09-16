@@ -63,7 +63,6 @@ class ArticleListCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         configUI()
     }
@@ -127,7 +126,7 @@ class ArticleListCell: UITableViewCell {
         stackView.addArrangedSubview(summaryLabel)
     }
     
-    func loadData(with article: ArticleListViewModel.ArticleViewModel?) {
+    func loadData(with article: NewArticleListViewModel.NewArticleViewModel?) {
         titleLabel.text = article?.title
         authorLabel.text = article?.author
         publishedTimeLabel.text = article?.publishedAt
