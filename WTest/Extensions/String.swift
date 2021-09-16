@@ -14,7 +14,12 @@ extension String {
     }
     
     var isValidText: Bool {
-        let regex = "([A-Z]{4})-([A-Z]{2})"
+        let regex = "(([\\-])*([A-Z])){3,7}"
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
+    }
+    
+    var isJustNumber: Bool {
+        let regex = "(\\d){1,}"
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
     }
 }

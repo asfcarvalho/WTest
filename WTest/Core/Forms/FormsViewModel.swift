@@ -14,14 +14,16 @@ struct FormsViewModel {
     var text: String = ""
     var date: String = ""
     var status: String = ""
+    var zipCode: String = ""
     
     func isValidFields() -> Bool {
         !description.isEmpty &&
         email.isValidEmail &&
-        !idText.isEmpty &&
+        idText.isJustNumber &&
         text.isValidText &&
         !date.isEmpty &&
-        !status.isEmpty
+        !status.isEmpty &&
+        !zipCode.isEmpty
     }
     
     func isMonday(date: Date) -> Bool {

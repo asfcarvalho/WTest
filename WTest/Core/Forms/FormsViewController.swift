@@ -10,6 +10,7 @@ import UIKit
 class FormsViewController: UIViewController {
     
     private var viewModel = FormsViewModel()
+    private var router = FormsRouter()
     
     private lazy var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
@@ -56,7 +57,8 @@ class FormsViewController: UIViewController {
     private lazy var descriptionTextField = TextFieldCustom("Texto livre...", self)
     private lazy var emailTextField = TextFieldCustom("email@example.com", self)
     private lazy var idTextField = TextFieldCustom("0000...", self)
-    private lazy var textTextField = TextFieldCustom("AAAA-AA", self)
+    private lazy var textTextField = TextFieldCustom("AAA-AA..", self)
+    private lazy var zipCodeTextField = TextFieldCustom("####-###, Designação Postal", self)
 
     private let pickerView = UIPickerView()
     private var pickerList: [String] = []
@@ -79,6 +81,7 @@ class FormsViewController: UIViewController {
         setBodyViewInScrollView()
         setStackViewInBodyView()
         setFieldsInStackView()
+        setZipCodeTextFieldInStackView()
         setValidateButtonInStackView()
     }
     
@@ -134,10 +137,19 @@ class FormsViewController: UIViewController {
         stackView.addArrangedSubview(statusTextField)
     }
     
+    private func setZipCodeTextFieldInStackView() {
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showZipCodeView))
+        zipCodeTextField.addGestureRecognizer(tap)
+        zipCodeTextField.isUserInteractionEnabled = true
+        
+        stackView.addArrangedSubview(zipCodeTextField)
+    }
+    
     private func setValidateButtonInStackView() {
         validateButton.addTarget(self, action: #selector(validateActionButton), for: .touchUpInside)
         stackView.addArrangedSubview(validateButton)
-        stackView.setCustomSpacing(16, after: statusTextField)
+        stackView.setCustomSpacing(16, after: zipCodeTextField)
         
         validateButton.height(50)
     }
@@ -158,8 +170,10 @@ class FormsViewController: UIViewController {
             isValidTextField = textField.text?.isValidEmail ?? false
         case textTextField:
             isValidTextField = textField.text?.isValidText ?? false
+        case idTextField:
+            isValidTextField = textField.text?.isJustNumber ?? false
         default:
-            isValidTextField = textField.text?.isEmpty ?? false
+            isValidTextField = !(textField.text?.isEmpty ?? true)
         }
         
         textField.layer.borderColor = isValidTextField ?
@@ -187,16 +201,24 @@ class FormsViewController: UIViewController {
             AlertCustom.showAlert(from: self, title: "Not valid", message: "Some fields are not valid")
         }
     }
+    
+    @objc private func showZipCodeView() {
+        closeKeyboard()
+        router.openZipCodeView(from: self, handleZipCodeSelected: { [weak self] zipCodeDescription in
+            self?.zipCodeTextField.text = zipCodeDescription
+            self?.viewModel.zipCode = zipCodeDescription
+        })
+    }
 }
 
 extension FormsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == statusTextField ||
-            textField == dateTextField {
+        switch textField {
+        case statusTextField, dateTextField, zipCodeTextField:
             return false
+        default:
+            return true
         }
-        
-        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

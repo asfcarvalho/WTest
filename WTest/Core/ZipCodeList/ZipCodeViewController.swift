@@ -10,6 +10,7 @@ import UIKit
 class ZipCodeViewController: UIViewController {
     
     var viewModel: ZipCodeListViewModel?
+    var handleZipCodeSelected: ((String) -> Void)?
     
     private lazy var tableView: UITableView = {
        let tableView = UITableView()
@@ -79,6 +80,7 @@ class ZipCodeViewController: UIViewController {
         searchBar.delegate = self
         tableView.register(ZipCodeCell.self, forCellReuseIdentifier: ZipCodeCell.identifier)
         tableView.dataSource = self
+        tableView.delegate = self
         
         view.addSubviews([searchBar, tableView])
         
@@ -104,7 +106,7 @@ class ZipCodeViewController: UIViewController {
     }
 }
 
-extension ZipCodeViewController: UITableViewDataSource {
+extension ZipCodeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.zipCodeList.count ?? 0
     }
@@ -118,6 +120,12 @@ extension ZipCodeViewController: UITableViewDataSource {
         cell.loadData(zipCode: zipCode)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        handleZipCodeSelected?(viewModel?.getZipCodeDescription(from: indexPath.row) ?? "")
+        navigationController?.popViewController(animated: true)
     }
 }
 
