@@ -15,6 +15,14 @@ class ArticleTitleCell: UITableViewCell {
         return label
     }()
     
+    private lazy var avatarImage: UIImageView = {
+       let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.transforToCircle()
+        imageView.tintColor = .lightGray
+        return imageView
+    }()
+    
     private lazy var authorLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -38,17 +46,25 @@ class ArticleTitleCell: UITableViewCell {
     }
 
     private func configUI() {
-        contentView.addSubviews([titleLabel, authorLabel, publishedTimeLabel])
+        contentView.addSubviews([avatarImage, titleLabel, authorLabel, publishedTimeLabel])
         
         backgroundColor = .white
         
-        titleLabel
+        avatarImage
             .topToSuperview(margin: 8)
             .leadingToSuperview(margin: 16)
+            .width(50)
+            .height(50)
+        
+        avatarImage.layoutIfNeeded()
+        
+        titleLabel
+            .topToSuperview(margin: 8)
+            .leadingToTrailing(of: avatarImage, margin: 8)
         
         authorLabel
             .topToBottom(of: titleLabel, margin: 8)
-            .leadingToSuperview(margin: 16)
+            .leadingToTrailing(of: avatarImage, margin: 8)
             .bottomToSuperview(margin: 8)
         
         publishedTimeLabel
@@ -57,7 +73,10 @@ class ArticleTitleCell: UITableViewCell {
             .trailingToSuperview(margin: 16)
     }
     
-    func loadData(_ article: ArticleViewModel?) {
+    func loadData(_ article: NewArticleViewModel?) {
+        avatarImage.loadImageWith(urlPath: article?.avatar,
+                                  placeholderImage: UIImage(systemName: "person.circle.fill"),
+                                  loadCacheEnabled: true, completion: nil)
         titleLabel.text = article?.title
         authorLabel.text = article?.author
         publishedTimeLabel.text = article?.publishedAt

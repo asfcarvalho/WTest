@@ -21,4 +21,4 @@ struct ArticleElement: Codable {
     }
 }
 
-typealias Article = [ArticleElement]
+typealias NewArticle = [ArticleElement]

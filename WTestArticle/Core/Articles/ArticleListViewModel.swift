@@ -7,21 +7,22 @@
 
 import UIKit
 
-class ArticleListViewModel {
+class NewArticleListViewModel {
     
-    var articleList: [ArticleViewModel]?
+    var articleList: [NewArticleViewModel]?
     
     private var pageLimit = 20
     private var pageIndex = 1
     private var totalPage = 1
     
-    struct ArticleViewModel {
+    struct NewArticleViewModel {
         let title: String
         let author: String
         let summary: String
         let body: String?
         let publishedAt: String?
         let hero: String?
+        let avatar: String?
     }
     
     func fetchData(competion: @escaping () -> Void) {
@@ -37,17 +38,18 @@ class ArticleListViewModel {
         }
     }
     
-    private func articleParse(_ article: Article) {
-        self.totalPage = Int((Double(article.count ?? 0) / Double(pageLimit)).rounded(.up))
+    private func articleParse(_ article: NewArticle) {
+        self.totalPage = Int((Double(article.count) / Double(pageLimit)).rounded(.up))
         
-        let articleListTemp = article.items?.map({
-            ArticleViewModel(title: $0.title ?? "",
+        let articleListTemp = article.map({
+            NewArticleViewModel(title: $0.title ?? "",
                              author: $0.author ?? "",
                              summary: $0.summary ?? "",
                              body: $0.body,
-                             publishedAt: $0.publishedAt,
-                             hero: $0.hero)
-        }) ?? []
+                             publishedAt: formatDateTime($0.publishedAt),
+                             hero: $0.hero,
+                             avatar: $0.avatar)
+        })
         
         if self.articleList == nil {
             self.articleList = articleListTemp
@@ -71,5 +73,10 @@ class ArticleListViewModel {
             return false
         }
         return indexPaths.map({ $0.row }).contains(count - 1)
+    }
+    
+    private func formatDateTime(_ publishedAt: String?) -> String {
+        let date = publishedAt?.toLogDate()
+        return date?.toShortDateString() ?? ""
     }
 }

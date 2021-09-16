@@ -9,7 +9,7 @@ import UIKit
 
 class ArticleViewController: UIViewController {
     
-    private var viewModel: ArticleViewModel?
+    private var viewModel: NewArticleViewModel?
     private var headerView: ArticleImageCell?
     private var minImageHeight: CGFloat = 150
     
@@ -19,7 +19,7 @@ class ArticleViewController: UIViewController {
         return tableView
     }()
     
-    init(viewModel: ArticleViewModel?) {
+    init(viewModel: NewArticleViewModel?) {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel = viewModel
@@ -109,6 +109,17 @@ extension ArticleViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch viewModel?.types[indexPath.row] {
+//        case .image:
+//            headerView?.loadData(viewModel?.hero)
+//////            guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleImageCell.identifier, for: indexPath) as? ArticleImageCell else {
+//                return UITableViewCell()
+//////            }
+//////
+//////            cell.awakeFromNib()
+//////            cell.loadData(viewModel?.hero)
+//////
+//////            return cell
+//        break
         case .title:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTitleCell.identifier, for: indexPath) as? ArticleTitleCell else {
                 return UITableViewCell()

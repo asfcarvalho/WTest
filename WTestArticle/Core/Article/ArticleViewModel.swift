@@ -13,23 +13,25 @@ enum ArticleType {
     case body
 }
 
-struct ArticleViewModel {
+struct NewArticleViewModel {
     let title: String?
     let author: String?
     let summary: String?
     let body: String?
     var publishedAt: String?
     let hero: String?
+    let avatar: String?
     
     var types: [ArticleType] = []
     
-    init(_ article: ArticleListViewModel.ArticleViewModel?) {
+    init(_ article: NewArticleListViewModel.NewArticleViewModel?) {
         self.title = article?.title
         self.author = article?.author
         self.summary = article?.summary
         self.body = article?.body
         self.publishedAt = article?.publishedAt
         self.hero = article?.hero
+        self.avatar = article?.avatar
         
         types = [.title, .body]
     }
