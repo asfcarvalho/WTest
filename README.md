@@ -2,7 +2,8 @@
 
 XCode Version: 12.5.1
 Swift Version: 5
-Swift Package Manager:
-CodableCSV: Used to parse CSV file to object
-Realm: Used to save local data
-Kingfisher: User do load the images
+
+#Swift Package Manager:
+1. CodableCSV: Used to parse CSV file to object
+1. Realm: Used to save local data
+1. Kingfisher: User do load the images
