@@ -16,7 +16,7 @@ struct Article: Codable {
 // MARK: - Item
 struct Item: Codable {
     let id, title, publishedAt: String?
-    let hero: String?
+    let hero, String?
     let author, summary, body, limit: String?
     let page: String?
 

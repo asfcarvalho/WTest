@@ -22,7 +22,8 @@ class AppConfig {
         All information will be declared on object WTest into project plist
      */
     init() {
-        guard let plist = Bundle.main.object(forInfoDictionaryKey: "WTest") as? NSDictionary else {
+        let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String
+        guard let plist = Bundle.main.object(forInfoDictionaryKey: appName ?? "") as? NSDictionary else {
             return
         }
         

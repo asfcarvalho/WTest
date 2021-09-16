@@ -8,6 +8,10 @@
 import Foundation
 import SystemConfiguration
 
+enum Errors: Error {
+    case errorDefault
+}
+
 class APICalling {
     
     static var lastFlag: Bool = true
@@ -29,7 +33,7 @@ class APICalling {
             guard let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode <= 200,
             error == nil, let data = data  else {
-                callBack(.failure(error!))
+                callBack(.failure(error ?? Errors.errorDefault))
                 return
             }
             

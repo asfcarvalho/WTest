@@ -20,6 +20,7 @@ struct ArticleViewModel {
     let body: String?
     var publishedAt: String?
     let hero: String?
+    let avatar: String?
     
     var types: [ArticleType] = []
     
@@ -30,13 +31,8 @@ struct ArticleViewModel {
         self.body = article?.body
         self.publishedAt = article?.publishedAt
         self.hero = article?.hero
+        self.avatar = article?.avatar
         
         types = [.title, .body]
-        formatDateTime()
-    }
-    
-    private mutating func formatDateTime() {        
-        let date = publishedAt?.toLogDate()
-        self.publishedAt = date?.toShortDateString()
     }
 }

@@ -22,6 +22,7 @@ class ArticleListViewModel {
         let body: String?
         let publishedAt: String?
         let hero: String?
+        let avatar: String?
     }
     
     func fetchData(competion: @escaping () -> Void) {
@@ -38,16 +39,17 @@ class ArticleListViewModel {
     }
     
     private func articleParse(_ article: Article) {
-        self.totalPage = Int((Double(article.count!) / Double(pageLimit)).rounded(.up))
+        self.totalPage = Int((Double(article.count) / Double(pageLimit)).rounded(.up))
         
-        let articleListTemp = article.items?.map({
+        let articleListTemp = article.map({
             ArticleViewModel(title: $0.title ?? "",
                              author: $0.author ?? "",
                              summary: $0.summary ?? "",
                              body: $0.body,
-                             publishedAt: $0.publishedAt,
-                             hero: $0.hero)
-        }) ?? []
+                             publishedAt: formatDateTime($0.publishedAt),
+                             hero: $0.hero,
+                             avatar: $0.avatar)
+        })
         
         if self.articleList == nil {
             self.articleList = articleListTemp
@@ -71,5 +73,10 @@ class ArticleListViewModel {
             return false
         }
         return indexPaths.map({ $0.row }).contains(count - 1)
+    }
+    
+    private func formatDateTime(_ publishedAt: String?) -> String {
+        let date = publishedAt?.toLogDate()
+        return date?.toShortDateString() ?? ""
     }
 }

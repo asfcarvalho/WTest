@@ -25,10 +25,6 @@ class ArticleImageCell: UITableViewHeaderFooterView {
         configUI()
     }
 
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//    }
-
     private func configUI() {
         contentView.addSubviews([heroImage])
         

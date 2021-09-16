@@ -23,6 +23,13 @@ class ArticleListCell: UITableViewCell {
         return label
     }()
     
+    private lazy var publishedTimeLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .thin)
+        label.textAlignment = .right
+        return label
+    }()
+    
     private lazy var iconImage: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right")
@@ -85,11 +92,29 @@ class ArticleListCell: UITableViewCell {
         let bodyTitleView = UIView()
         bodyTitleView.backgroundColor = .clear
         
-        bodyTitleView.addSubviews([titleLabel, iconImage])
+        bodyTitleView.addSubviews([titleLabel, publishedTimeLabel, iconImage])
         
         stackView.addArrangedSubview(bodyTitleView)
         
         setupAnchors()
+    }
+  
+    private func setupAnchors() {
+        titleLabel
+            .edgeToSuperViewVerical()
+            .leadingToSuperview()
+            .width(UIScreen.main.bounds.width * 0.5)
+        
+        publishedTimeLabel
+            .centerY(of: titleLabel)
+            .leadingToTrailing(of: titleLabel, margin: 8)
+        
+        iconImage
+            .width(12)
+            .height(12)
+            .leadingToTrailing(of: publishedTimeLabel, margin: 8)
+            .trailingToSuperview()
+            .centerY(of: titleLabel)
     }
     
     private func setSummaryInStackView(_ summary: String?) {
@@ -102,22 +127,10 @@ class ArticleListCell: UITableViewCell {
         stackView.addArrangedSubview(summaryLabel)
     }
     
-    private func setupAnchors() {
-        titleLabel
-            .edgeToSuperViewVerical()
-            .leadingToSuperview()
-        
-        iconImage
-            .width(12)
-            .height(12)
-            .leadingToTrailing(of: titleLabel, margin: 8)
-            .trailingToSuperview()
-            .centerY(of: titleLabel)
-    }
-    
     func loadData(with article: ArticleListViewModel.ArticleViewModel?) {
         titleLabel.text = article?.title
         authorLabel.text = article?.author
+        publishedTimeLabel.text = article?.publishedAt
         setSummaryInStackView(article?.summary)
     }
 }
